@@ -1,60 +1,69 @@
-# Abhinandan H S — Portfolio
+# Abhinandan H S — Personal Portfolio 🚀
 
-A dark/light "civic blueprint" themed portfolio site — navy & brass on a
-drafting-paper grid, with projects laid out like engineering title-block
-sheets. Built as static HTML/CSS/JS, no build step, no dependencies to
-install.
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)
 
-## Run it locally
+A modern, responsive personal portfolio showcasing projects, technical stack, experience, and credentials. Built with clean semantic HTML5, Vanilla CSS, and modern interactive JavaScript.
 
-Just open `index.html` in a browser — or, for the theme toggle and fonts
-to behave exactly like production, serve it over a local server:
+---
 
-```bash
-cd portfolio
-python3 -m http.server 8000
-# then visit http://localhost:8000
-```
+## ✨ Features
 
-## Folder structure
+- **⚡ Fast & Lightweight**: Zero runtime dependencies, pure native web technologies.
+- **🎨 Modern Dark Aesthetic**: Crafted with sleek glassmorphism, subtle gradients, and typography.
+- **✨ Micro-Interactions**: Dynamic hover transitions, rotating button badges, and animated modals.
+- **📱 Fully Responsive**: Optimized across mobile, tablet, and desktop screens.
+- **💼 Comprehensive Sections**:
+  - **Hero**: Tagline, status indicator, and quick actions.
+  - **About & Stack**: Core tools, languages, frameworks, and developer profile.
+  - **Featured Projects**: Highlights of full-stack and civic-tech projects with GitHub links.
+  - **Credentials & Education**: Academic background, certifications, and achievements.
+  - **Interactive Contact**: Instant contact modal, direct email, Instagram, LinkedIn, and WhatsApp integration.
 
-```
-portfolio/
-├── index.html                          Main page
-├── assets/
-│   ├── css/style.css                   All styling + both themes
-│   ├── js/main.js                      Theme toggle, mobile nav, scroll reveal
-│   ├── img/profile.png                 Your photo (optimized for web)
-│   └── docs/Abhinandan_HS_Resume.pdf   Downloadable résumé (from your PDF)
-```
+---
 
-## Deploy it (free options)
+## 🛠️ Tech Stack
 
-- **GitHub Pages**: push this folder to a repo, then in Settings → Pages,
-  set the source to the `main` branch root. Your site will be live at
-  `https://<username>.github.io/<repo>/`.
-- **Netlify / Vercel**: drag-and-drop the `portfolio` folder onto
-  netlify.com/drop, or run `vercel` inside this folder — both are free
-  and give you a custom URL in under a minute.
+- **Structure**: Semantic HTML5
+- **Styling**: Vanilla CSS3 (Custom Design System, CSS Variables, Flexbox/Grid)
+- **Interactivity**: Native JavaScript (ES6+)
+- **Fonts**: Inter, Outfit via Google Fonts
 
-## Things worth double-checking before you publish
+---
 
-1. **GitHub / LinkedIn links** — your resume listed `abhi-nandan-in` and
-   `Abhiii-work` without saying which platform each belongs to. I linked
-   them as `github.com/abhi-nandan-in` and `linkedin.com/in/Abhiii-work`
-   as the most likely reading — open `index.html`, search for
-   `contact-item`, and fix the two `href` values if that's wrong.
-2. **Phone/email** are wired as `tel:` / `mailto:` links — check they're correct.
-3. Swap `assets/img/profile.png` for a different photo any time — same filename, any time you like.
+## 🚀 Getting Started
 
-## Customizing
+### Local Development
 
-- **Colors & fonts** live at the top of `assets/css/style.css` as CSS
-  variables (`--gold`, `--steel`, `--ink`, `--font-display`, etc.) — change
-  them once and they cascade everywhere, in both themes.
-- **Default theme**: the site opens in dark mode and remembers a visitor's
-  choice after they toggle. To default to light instead, open
-  `assets/js/main.js` and change `saved === "light" ? "light" : "dark"`
-  to default to `"light"`.
-- **Content**: everything is plain text inside `index.html` — search for
-  the section you want (e.g. `id="projects"`) and edit directly.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Abhiii-work/Portfolio.git
+   cd Portfolio
+   ```
+
+2. Open `index.html` directly in your browser or run a simple local server:
+   ```bash
+   # Using Python
+   python -m http.server 3000
+   
+   # Or using Node.js npx
+   npx serve .
+   ```
+
+---
+
+## 📬 Connect with Me
+
+- **GitHub**: [@Abhiii-work](https://github.com/Abhiii-work)
+- **LinkedIn**: [Abhinandan H S](https://linkedin.com/in/abhi-nandan-in)
+- **Instagram**: [@abhi._05_](https://www.instagram.com/abhi._05_)
+- **WhatsApp**: [+91 7022764978](https://wa.me/917022764978)
+- **Email**: [abhi.codespace@gmail.com](mailto:abhi.codespace@gmail.com)
+
+---
+
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE) — see the LICENSE file for details.
