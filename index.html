@@ -394,6 +394,40 @@
       background: linear-gradient(to bottom, rgba(255, 255, 255, .35), transparent, rgba(255, 255, 255, .35))
     }
 
+    /* Mobile-only: show full person as a flow element, text below */
+    @media(max-width:1023px) {
+      .hero {
+        background: linear-gradient(135deg, #d4d2ce 0%, #c9c9c9 50%, #bdbbb7 100%);
+        display: flex;
+        flex-direction: column;
+      }
+      .hero-bg {
+        position: relative;
+        inset: auto;
+        width: 100%;
+        height: 42vh;
+        flex-shrink: 0;
+        margin-top: 0;
+      }
+      .hero-bg img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: center top; /* image flush to the very top */
+      }
+      .hero-bg canvas {
+        display: none;
+      }
+      .hero-vignette {
+        display: none;
+      }
+      .hero-watermark--desktop {
+        display: none;
+      }
+    }
+
     .hero-watermark {
       pointer-events: none;
       position: absolute;
@@ -420,6 +454,21 @@
     .hero-watermark.revealed {
       opacity: 1;
       transform: translateY(0)
+    }
+
+    /* Desktop watermark: ABHINANDAN */
+    .hero-watermark--desktop { display: block }
+    .hero-watermark--mobile  { display: none }
+
+    @media(max-width:1023px) {
+      .hero-watermark--desktop { display: none }
+      .hero-watermark--mobile  {
+        display: block;
+        font-size: clamp(3.2rem, 18vw, 5.5rem);
+        font-weight: 800;
+        letter-spacing: .06em;
+        bottom: 2.25rem; /* placed in the gap between tubes and status bar */
+      }
     }
 
     .hero-content {
@@ -1023,7 +1072,168 @@
       letter-spacing: .05em;
     }
 
-    /* ── About ── */
+    /* ── Mobile Hero Layout Overrides ── */
+    @media(max-width:1023px) {
+      /* Header & Brand smaller directly over image */
+      .header-inner {
+        padding: .5rem 1rem;
+      }
+      .header-brand {
+        font-size: .8rem;
+        gap: .25rem;
+      }
+      .header-brand svg {
+        width: .8rem;
+        height: .8rem;
+      }
+      /* Hamburger button & 3 lines smaller */
+      .menu-btn {
+        width: 1.75rem;
+        height: 1.75rem;
+      }
+      .menu-btn svg {
+        width: .75rem;
+        height: .75rem;
+      }
+
+      /* Hide Tumkur location on mobile */
+      .hero-eyebrow--desktop,
+      #hero-eyebrow {
+        display: none !important;
+      }
+
+      /* Smaller name, placed higher */
+      .hero-h1 {
+        font-size: 1.25rem !important;
+        letter-spacing: -.01em;
+        margin-top: -.25rem;
+      }
+      .hero-role {
+        font-size: .75rem;
+      }
+      .hero-desc {
+        font-size: .72rem;
+        line-height: 1.45;
+      }
+
+      /* Compact content below photo */
+      .hero-content {
+        gap: .5rem;
+        padding: .25rem 1.25rem 4rem;
+      }
+      .hero-left {
+        gap: .45rem;
+      }
+
+      /* CTA buttons: smaller, same line, centered */
+      .cta-row {
+        flex-wrap: nowrap;
+        gap: .5rem;
+        justify-content: center;
+        margin-bottom: .5rem;
+      }
+      .pill-btn--hero .pill-inner {
+        padding: .2rem .25rem .2rem .75rem;
+        gap: .5rem;
+        font-size: .68rem;
+      }
+      .pill-badge {
+        width: 1.35rem;
+        height: 1.35rem;
+      }
+      .hero-arrow {
+        width: .7rem;
+        height: .7rem;
+      }
+
+      /* Status bar: single centered line for Scroll to explore */
+      .hero-status {
+        padding: .65rem 1.25rem;
+      }
+      .hero-status-tag {
+        display: none !important;
+      }
+      .hero-status-inner {
+        justify-content: center !important;
+        font-size: .625rem;
+        letter-spacing: .05em;
+      }
+
+      /* ── Mobile Footer Layout Overrides (Screen-fit & Compact) ── */
+      .footer-inner {
+        padding: 2rem 1.25rem 1.25rem;
+      }
+      .footer-cta {
+        gap: 1rem;
+        padding-bottom: 0.85rem;
+        width: 100%;
+      }
+      .footer-cta-h2 {
+        font-size: 1.65rem;
+        max-width: 100%;
+        line-height: 1.1;
+      }
+      .footer-columns {
+        grid-template-columns: 1fr 1fr;
+        gap: 1.25rem 1rem;
+        padding-top: 0.85rem;
+      }
+      .footer-columns > div:nth-child(1) {
+        order: 1;
+        grid-column: span 2;
+      }
+      .footer-columns > div:nth-child(2) {
+        order: 2;
+        grid-column: 1;
+      }
+      .footer-columns > div:nth-child(4) {
+        order: 3;
+        grid-column: 2;
+      }
+      .footer-columns > div:nth-child(3) {
+        order: 4;
+        grid-column: span 2;
+      }
+      .footer-col-title {
+        margin-bottom: .4rem;
+        font-size: .7rem;
+      }
+      .footer-col-brand {
+        margin-bottom: .25rem;
+        font-size: 1rem;
+      }
+      .footer-col-tagline {
+        font-size: .78rem;
+        line-height: 1.45;
+        max-width: 100%;
+      }
+      .footer-col-links {
+        gap: .35rem;
+      }
+      .animated-link {
+        font-size: .8rem;
+      }
+      .contact-grid {
+        margin-top: .6rem;
+        width: 100%;
+      }
+      .contact-card {
+        padding: .75rem 1rem;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      .footer-watermark {
+        margin-top: 1.25rem;
+        margin-bottom: .35rem;
+        font-size: clamp(1.15rem, 5.2vw, 2.5rem) !important;
+        white-space: nowrap !important;
+        letter-spacing: .02em;
+      }
+      .footer-copyright {
+        font-size: .65rem;
+        line-height: 1.4;
+      }
+    }
     .about {
       background: #fff
     }
@@ -1920,10 +2130,12 @@
       user-select: none;
       font-weight: 800;
       line-height: 1;
-      font-size: clamp(2.5rem, 8vw, 6.5rem);
-      letter-spacing: .04em;
+      font-size: clamp(1.25rem, 5.5vw, 6.5rem);
+      letter-spacing: .03em;
       color: rgba(255, 255, 255, .08);
       text-transform: uppercase;
+      white-space: nowrap;
+      width: 100%;
     }
 
     .footer-copyright {
@@ -2341,10 +2553,88 @@
       color: rgba(255, 255, 255, .8);
       font-weight: 500
     }
+
+    /* ── Custom Interactive Kite Pointer (Color Inverting Directional Arrow & Clickable Transform) ── */
+    .custom-pointer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 18px;
+      height: 18px;
+      pointer-events: none;
+      z-index: 999999;
+      mix-blend-mode: difference;
+      color: #ffffff;
+      opacity: 0;
+      transform: translate3d(-100px, -100px, 0);
+      transition: opacity .25s cubic-bezier(.2, .8, .2, 1);
+      will-change: transform, opacity;
+    }
+
+    .custom-pointer.visible {
+      opacity: 1;
+    }
+
+    .pointer-kite,
+    .pointer-clickable {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      transform-origin: center center;
+      transition: opacity .2s cubic-bezier(.2, .8, .2, 1), transform .2s cubic-bezier(.2, .8, .2, 1);
+    }
+
+    .pointer-kite {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .pointer-clickable {
+      opacity: 0;
+      transform: scale(0.35);
+    }
+
+    /* Morph into clickable pointer over interactive buttons/links */
+    .custom-pointer.is-hovering .pointer-kite {
+      opacity: 0 !important;
+      transform: scale(0.2) rotate(30deg) !important;
+      pointer-events: none;
+    }
+
+    .custom-pointer.is-hovering .pointer-clickable {
+      opacity: 1 !important;
+      transform: scale(1.4) !important;
+      pointer-events: none;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      *, *::before, *::after {
+        cursor: none !important;
+      }
+    }
+
+    @media (hover: none) and (pointer: coarse) {
+      .custom-pointer {
+        display: none !important;
+      }
+    }
   </style>
 </head>
 
 <body>
+
+  <!-- Custom Pointer (Directional Kite & Clickable Hover Indicator) -->
+  <div class="custom-pointer" id="custom-pointer" aria-hidden="true">
+    <svg class="pointer-kite" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 2 L21.5 21 L12 16.8 L2.5 21 Z" />
+    </svg>
+    <svg class="pointer-clickable" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="9.5" />
+      <path d="M8.5 15.5 L15.5 8.5 M15.5 8.5 H10 M15.5 8.5 V14" />
+    </svg>
+  </div>
 
   <a href="#main" class="skip-link">Skip to content</a>
 
@@ -2412,10 +2702,11 @@
         <canvas aria-hidden="true" id="hero-canvas"></canvas>
       </div>
       <div class="hero-vignette"></div>
-      <div class="hero-watermark" id="hero-watermark">ABHINANDAN</div>
+      <div class="hero-watermark hero-watermark--desktop" id="hero-watermark">ABHINANDAN</div>
+      <div class="hero-watermark hero-watermark--mobile" id="hero-watermark-mobile">ABHI</div>
       <div class="shell hero-content">
         <div class="hero-left">
-          <div class="reveal" id="hero-eyebrow">
+          <div class="reveal hero-eyebrow--desktop" id="hero-eyebrow">
             <span class="eyebrow eyebrow--dark">
               <span class="eyebrow-dot"></span>
               Tumkur(572105),India
@@ -3031,7 +3322,7 @@
         setTimeout(() => {
           introReady = true; startScroll(); loaderEl.remove();
           setTimeout(() => document.getElementById('site-header').classList.add('revealed'), 150);
-          setTimeout(() => document.getElementById('hero-watermark').classList.add('revealed'), 300)
+          setTimeout(() => { document.getElementById('hero-watermark').classList.add('revealed'); const m = document.getElementById('hero-watermark-mobile'); if (m) m.classList.add('revealed'); }, 300)
         }, 700)
       }
     }
@@ -3073,6 +3364,103 @@
       }
       requestAnimationFrame(canvasTick)
     }
+
+    // Dynamic Kite Pointer Animation (Directional Tracking & Difference Blending)
+    (function () {
+      const isTouch = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+      if (isTouch) return;
+
+      const pointer = document.getElementById('custom-pointer');
+      const pointerKite = pointer ? pointer.querySelector('.pointer-kite') : null;
+      if (!pointer || !pointerKite) return;
+
+      let mouseX = -100, mouseY = -100;
+      let posX = -100, posY = -100;
+      let lastX = -100, lastY = -100;
+      let angle = 0;
+      let targetAngle = 0;
+      let isVisible = false;
+
+      // Morph pointer over clickable interactive elements
+      const interactiveSelector = 'a, button, [role="button"], input, textarea, select, .pill-btn, .pill-inner, .contact-card, .menu-btn, .project-card, .skill-pill, .nav-menu-item, [data-scroll], [onclick], label, summary';
+
+      function updateHoverState(el) {
+        if (el && el.closest && el.closest(interactiveSelector)) {
+          pointer.classList.add('is-hovering');
+        } else {
+          pointer.classList.remove('is-hovering');
+        }
+      }
+
+      window.addEventListener('mousemove', e => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        if (!isVisible) {
+          isVisible = true;
+          pointer.classList.add('visible');
+          posX = mouseX;
+          posY = mouseY;
+          lastX = mouseX;
+          lastY = mouseY;
+        }
+        updateHoverState(e.target);
+      }, { passive: true });
+
+      document.addEventListener('mouseover', e => {
+        if (e.target && e.target.closest && e.target.closest(interactiveSelector)) {
+          pointer.classList.add('is-hovering');
+        }
+      }, true);
+
+      document.addEventListener('mouseout', e => {
+        if (!e.relatedTarget || !e.relatedTarget.closest || !e.relatedTarget.closest(interactiveSelector)) {
+          pointer.classList.remove('is-hovering');
+        }
+      }, true);
+
+      document.body.addEventListener('mouseleave', () => {
+        isVisible = false;
+        pointer.classList.remove('visible');
+      });
+
+      document.body.addEventListener('mouseenter', () => {
+        isVisible = true;
+        pointer.classList.add('visible');
+      });
+
+      function renderPointer() {
+        if (isVisible) {
+          const dx = mouseX - lastX;
+          const dy = mouseY - lastY;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          // Update rotation angle towards movement direction when cursor travels
+          if (dist > 1.2) {
+            targetAngle = Math.atan2(dy, dx) * (180 / Math.PI) + 90;
+          }
+
+          // Smooth interpolation for position
+          posX += (mouseX - posX) * 0.28;
+          posY += (mouseY - posY) * 0.28;
+
+          // Smooth shortest-path angle rotation
+          let diffAngle = targetAngle - angle;
+          while (diffAngle < -180) diffAngle += 360;
+          while (diffAngle > 180) diffAngle -= 360;
+          angle += diffAngle * 0.22;
+
+          lastX = mouseX;
+          lastY = mouseY;
+
+          const cx = posX - 9; // center 18px / 2
+          const cy = posY - 9; // center 18px / 2
+          pointer.style.transform = `translate3d(${cx}px, ${cy}px, 0)`;
+          pointerKite.style.transform = `rotate(${angle}deg)`;
+        }
+        requestAnimationFrame(renderPointer);
+      }
+      requestAnimationFrame(renderPointer);
+    })();
   </script>
 </body>
 
