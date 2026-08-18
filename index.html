@@ -326,7 +326,7 @@
 
     .header-nav {
       display: none;
-      gap: 2rem;
+      gap: clamp(1rem, 1.8vw, 2rem);
       font-size: .875rem;
       font-weight: 500;
       justify-self: center;
@@ -406,7 +406,8 @@
       inset: 0;
       width: 100%;
       height: 100%;
-      object-fit: cover
+      object-fit: cover;
+      object-position: center center;
     }
 
     .hero-bg canvas {
@@ -422,7 +423,8 @@
       inset: 0;
       z-index: 1;
       pointer-events: none;
-      background: linear-gradient(to bottom, rgba(255, 255, 255, .35), transparent, rgba(255, 255, 255, .35))
+      background: linear-gradient(to right, rgba(201, 201, 201, 0.85) 0%, rgba(201, 201, 201, 0.45) 42%, transparent 70%),
+                  linear-gradient(to bottom, rgba(255, 255, 255, .35), transparent, rgba(255, 255, 255, .35));
     }
 
     /* Mobile-only: show full person as a flow element, text below */
@@ -437,19 +439,21 @@
         position: relative;
         inset: auto;
         width: 100%;
-        height: 42vh;
+        height: auto;
+        aspect-ratio: 1024 / 575;
         flex-shrink: 0;
         margin-top: 0;
+        overflow: hidden;
       }
 
       .hero-bg img {
-        position: absolute;
-        inset: 0;
+        position: relative;
+        inset: auto;
         width: 100%;
         height: 100%;
-        object-fit: contain;
+        object-fit: cover;
         object-position: center top;
-        /* image flush to the very top */
+        display: block;
       }
 
       .hero-bg canvas {
@@ -550,7 +554,9 @@
 
     @media(min-width:769px) {
       .hero-left {
-        grid-column: span 7
+        grid-column: span 6;
+        max-width: 34rem;
+        z-index: 2;
       }
     }
 
@@ -563,7 +569,7 @@
 
     @media(min-width:769px) {
       .hero-right {
-        grid-column: span 5;
+        grid-column: span 6;
         align-items: flex-end
       }
     }
@@ -2735,7 +2741,7 @@
         Abhiii
       </button>
       <nav class="header-nav" aria-label="Primary">
-        <ul style="display:flex;gap:2rem">
+        <ul style="display:flex;gap:clamp(1rem, 1.8vw, 2rem)">
           <li><button data-scroll="home">Home</button></li>
           <li><button data-scroll="about">About</button></li>
           <li><button data-scroll="skills">Stack</button></li>
