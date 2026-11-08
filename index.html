@@ -3239,7 +3239,8 @@
     const projects = [
       { name: 'Civic Issue Reporter System', sub: 'Smart City Tumakuru', cat: 'Full-Stack', year: '2026', desc: 'A digital platform that streamlines public civic-defect reporting, tracking and management for citizens and municipal authorities.', notes: ['Backend development, database schema design, interactive map & analytical chart integration.', 'Real-time complaint tracking, department-wise allocation, automated status notifications.', 'REST APIs for citizen & admin portals with secure auth and role-based access control.'], tags: ['Node.js', 'Express.js', 'MongoDB', 'EJS', 'Bootstrap', 'Chart.js', 'Leaflet.js'] },
       { name: 'Hostel Management Portal', sub: 'Full-stack campus operations suite', cat: 'Full-Stack', year: '2026', desc: 'A full-stack portal enabling room allocation, leave management, complaints, notices, penalties and fee tracking for an entire hostel.', notes: ['RESTful APIs with Express.js and Supabase for records, bookings and approvals.', 'Interactive dashboards with role-based access and real-time DB operations.', 'Responsive UI built to streamline day-to-day hostel operations.'], tags: ['Node.js', 'Express.js', 'Supabase', 'HTML/CSS', 'JavaScript'] },
-      { name: 'Traffic Police Partner (TPP)', sub: 'Violation & fine management', cat: 'Django', year: '2026', desc: 'A digital platform to streamline traffic-violation reporting and fine management for traffic police personnel.', notes: ['Violation tracking system with structured database design for violation records.', 'Financial reporting dashboards for fines issued and collected.'], tags: ['Python', 'Django', 'MySQL', 'HTML/CSS', 'JavaScript'] }
+      { name: 'Traffic Police Partner (TPP)', sub: 'Violation & fine management', cat: 'Django', year: '2026', desc: 'A digital platform to streamline traffic-violation reporting and fine management for traffic police personnel.', notes: ['Violation tracking system with structured database design for violation records.', 'Financial reporting dashboards for fines issued and collected.'], tags: ['Python', 'Django', 'MySQL', 'HTML/CSS', 'JavaScript'] },
+      { name: 'CyberShield', sub: 'Citizen Cybercrime & Threat Intelligence Portal', cat: 'Full-Stack', year: '2026', desc: 'A citizen-first cybercrime reporting and threat intelligence platform designed to report online fraud, track complaint lifecycles in real-time, and verify suspicious numbers, URLs, and emails.', notes: ['Multi-step incident filing workflow with automated tracking IDs and dynamic status progress pipelines.', 'Real-time scam scanner to verify suspicious phone numbers, phishing domains, and email addresses.', 'Role-based admin control center with complaint triage, categorization, and automated summons delivery.'], tags: ['React 19', 'TypeScript', 'Node.js', 'Express', 'Supabase', 'Tailwind CSS'] }
     ];
     const portfolioGrid = document.getElementById('portfolio-grid');
     projects.forEach((item, i) => {
@@ -3288,7 +3289,7 @@
     });
 
     // Stats
-    const statsData = [{ value: 8, suffix: '.0', label: 'CGPA Score' }, { value: 3, suffix: '', label: 'Full-stack systems shipped' }, { value: 6, suffix: '', label: 'Certifications earned' }, { value: 4, suffix: '', label: 'Languages spoken' }];
+    const statsData = [{ value: 8, suffix: '.0', label: 'CGPA Score' }, { value: 4, suffix: '', label: 'Full-stack systems shipped' }, { value: 6, suffix: '', label: 'Certifications earned' }, { value: 4, suffix: '', label: 'Languages spoken' }];
     const statsGrid = document.getElementById('stats-grid');
     statsData.forEach((stat, i) => {
       const li = document.createElement('li'); li.className = 'reveal'; li.style.transform = 'translateY(20px)';
