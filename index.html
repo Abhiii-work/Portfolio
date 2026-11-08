@@ -565,8 +565,8 @@
 
     @media(min-width:769px) {
       .hero-left {
-        grid-column: span 6;
-        max-width: 34rem;
+        grid-column: span 7;
+        max-width: 38rem;
         z-index: 2;
       }
     }
@@ -580,7 +580,7 @@
 
     @media(min-width:769px) {
       .hero-right {
-        grid-column: span 6;
+        grid-column: span 5;
         align-items: flex-end
       }
     }
@@ -671,22 +671,23 @@
 
     /* ── Hero H1 ── */
     .hero-h1 {
-      max-width: 18ch;
+      max-width: none;
       font-size: 2.25rem;
       font-weight: 600;
       line-height: .98;
-      letter-spacing: -.02em
+      letter-spacing: -.02em;
     }
 
     @media(min-width:640px) {
       .hero-h1 {
-        font-size: 3rem
+        font-size: 3rem;
       }
     }
 
-    @media(min-width:768px) {
+    @media(min-width:769px) {
       .hero-h1 {
-        font-size: 3.75rem
+        font-size: clamp(2rem, 3.8vw, 3.75rem);
+        white-space: nowrap;
       }
     }
 
@@ -731,8 +732,8 @@
 
     /* Hero Interactive Tabs (Blended idle -> Solid Black hover + Rotating Arrow) */
     .pill-btn--hero .pill-inner {
-      padding: .375rem .45rem .375rem 2.25rem;
-      gap: 1.75rem;
+      padding: .375rem .45rem .375rem clamp(1rem, 1.5vw, 2.25rem);
+      gap: clamp(0.75rem, 1.2vw, 1.75rem);
       border: 1px solid rgba(17, 17, 17, .22);
       background: rgba(255, 255, 255, .25);
       backdrop-filter: blur(10px);
@@ -1687,49 +1688,70 @@
     .portfolio-grid {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 1.5rem
+      gap: 1.5rem;
+      align-items: stretch;
     }
 
     @media(min-width:768px) {
       .portfolio-grid {
-        grid-template-columns: repeat(2, 1fr)
+        grid-template-columns: repeat(2, 1fr);
       }
     }
 
     .portfolio-card {
       position: relative;
-      min-height: 22rem;
-      overflow: hidden;
+      min-height: 24rem;
+      height: 100%;
       border-radius: 2rem;
       background: #0a0a0a;
-      padding: 1.5rem;
+      padding: 1.75rem;
       color: #fff;
-      outline: 1px solid rgba(255, 255, 255, .05);
+      outline: 1px solid rgba(255, 255, 255, .08);
       outline-offset: -1px;
-      transition: transform .35s cubic-bezier(.2, .8, .2, 1);
+      transition: transform .35s cubic-bezier(.16, 1, .3, 1), outline-color .35s ease, box-shadow .35s ease;
       display: flex;
       flex-direction: column;
-      justify-content: space-between
+      justify-content: space-between;
+      cursor: pointer;
+      user-select: none;
+      overflow: hidden;
     }
 
     @media(min-width:640px) {
       .portfolio-card {
         min-height: 26rem;
-        padding: 2rem
+        padding: 2rem;
       }
     }
 
     .portfolio-card:hover {
-      transform: translateY(-8px) scale(1.012)
+      transform: translateY(-6px) scale(1.008);
+      outline-color: rgba(255, 255, 255, .25);
+      box-shadow: 0 16px 42px -10px rgba(0, 0, 0, .85), 0 0 25px rgba(255, 255, 255, .05);
     }
 
     .portfolio-meta {
       display: flex;
       justify-content: space-between;
+      align-items: center;
       font-size: .75rem;
       text-transform: uppercase;
-      letter-spacing: .025em;
-      color: rgba(255, 255, 255, .45)
+      letter-spacing: .04em;
+      color: rgba(255, 255, 255, .5);
+      z-index: 2;
+      position: relative;
+    }
+
+    .portfolio-category-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      padding: .35rem .75rem;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, .06);
+      border: 1px solid rgba(255, 255, 255, .1);
+      font-weight: 500;
+      color: rgba(255, 255, 255, .8);
     }
 
     .portfolio-arrow-badge {
@@ -1738,20 +1760,23 @@
       display: grid;
       place-items: center;
       border-radius: 9999px;
-      background: rgba(255, 255, 255, .1);
+      background: rgba(255, 255, 255, .08);
       color: #fff;
       outline: 1px solid rgba(255, 255, 255, .15);
       outline-offset: -1px;
-      transition: transform .35s cubic-bezier(.2, .8, .2, 1)
+      transition: transform .4s cubic-bezier(.16, 1, .3, 1), background-color .3s ease, color .3s ease, outline-color .3s ease;
     }
 
     .portfolio-card:hover .portfolio-arrow-badge {
-      transform: rotate(45deg) scale(1.08)
+      transform: rotate(45deg) scale(1.08);
+      background: #fff;
+      color: #0a0a0a;
+      outline-color: #fff;
     }
 
     .portfolio-arrow-badge svg {
-      width: 1rem;
-      height: 1rem
+      width: 1.15rem;
+      height: 1.15rem;
     }
 
     .portfolio-center {
@@ -1759,72 +1784,379 @@
       inset: 0;
       display: grid;
       place-items: center;
-      pointer-events: none
+      pointer-events: none;
+      z-index: 1;
     }
 
     .portfolio-center svg {
       width: 4.5rem;
       height: 4.5rem;
-      color: rgba(255, 255, 255, .09)
+      color: rgba(255, 255, 255, .07);
+      transition: transform .5s cubic-bezier(.16, 1, .3, 1), color .3s ease;
     }
 
-    .portfolio-bottom h3 {
-      font-size: 1.5rem;
+    .portfolio-card:hover .portfolio-center svg {
+      transform: scale(1.08) rotate(12deg);
+      color: rgba(255, 255, 255, .12);
+    }
+
+    .portfolio-bottom {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .portfolio-title {
+      font-size: 1.45rem;
       font-weight: 500;
-      letter-spacing: -.01em
+      letter-spacing: -.015em;
+      line-height: 1.25;
+      color: #fff;
+      margin: 0;
     }
 
     @media(min-width:640px) {
-      .portfolio-bottom h3 {
-        font-size: 1.875rem
+      .portfolio-title {
+        font-size: 1.75rem;
       }
     }
 
     .portfolio-bottom .sub {
       font-size: .875rem;
-      color: rgba(255, 255, 255, .7);
-      margin-top: .25rem;
-      font-weight: 500
+      color: rgba(255, 255, 255, .65);
+      margin-top: .35rem;
+      font-weight: 400;
+      line-height: 1.4;
     }
 
-    .portfolio-bottom p {
-      margin-top: .5rem;
-      max-width: 28rem;
+    .portfolio-preview-desc {
+      margin-top: .75rem;
       font-size: .875rem;
-      color: rgba(255, 255, 255, .55)
+      line-height: 1.55;
+      color: rgba(255, 255, 255, .55);
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
 
     .portfolio-tags {
-      margin-top: 1.25rem;
+      margin-top: 1.15rem;
       display: flex;
       flex-wrap: wrap;
-      gap: .5rem
+      gap: .45rem;
+      align-items: center;
     }
 
     .tag-chip {
       display: inline-flex;
-      border: 1px solid rgba(255, 255, 255, .25);
+      align-items: center;
+      border: 1px solid rgba(255, 255, 255, .2);
+      background: rgba(255, 255, 255, .04);
       color: #fff;
       border-radius: 9999px;
-      padding: .5rem 1rem;
-      font-size: .8rem
+      padding: .35rem .8rem;
+      font-size: .78rem;
+      transition: background-color .2s ease, border-color .2s ease;
     }
 
-    .portfolio-notes {
-      margin-top: .75rem;
+    .tag-chip:hover {
+      background: rgba(255, 255, 255, .1);
+      border-color: rgba(255, 255, 255, .4);
+    }
+
+    .tag-chip--more {
+      background: rgba(255, 255, 255, .08);
+      border-color: rgba(255, 255, 255, .25);
+      color: rgba(255, 255, 255, .9);
+      font-weight: 500;
+    }
+
+    .portfolio-card-hint {
+      margin-top: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+      font-size: .8rem;
+      font-weight: 500;
+      color: rgba(255, 255, 255, .45);
+      transition: color .25s ease, transform .25s ease;
+    }
+
+    .portfolio-card-hint svg {
+      width: .9rem;
+      height: .9rem;
+      transition: transform .25s ease;
+    }
+
+    .portfolio-card:hover .portfolio-card-hint {
+      color: #cf8047;
+    }
+
+    .portfolio-card:hover .portfolio-card-hint svg {
+      transform: translateX(4px);
+    }
+
+    /* ── Project Details Popup Modal ── */
+    .project-modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 130;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.25rem;
+      background: rgba(7, 7, 7, 0.82);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .35s cubic-bezier(.16, 1, .3, 1);
+    }
+
+    .project-modal-backdrop.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .project-modal-panel {
+      position: relative;
+      width: 100%;
+      max-width: 44rem;
+      max-height: 88vh;
       display: flex;
       flex-direction: column;
-      gap: .25rem;
-      font-size: .8rem;
-      color: rgba(255, 255, 255, .4)
+      border-radius: 2rem;
+      background: #0d0d0d;
+      color: #fff;
+      outline: 1px solid rgba(255, 255, 255, .12);
+      outline-offset: -1px;
+      box-shadow: 0 30px 70px -15px rgba(0, 0, 0, .9), 0 0 40px rgba(255, 255, 255, .04);
+      transform: scale(0.92) translateY(24px);
+      transition: transform .38s cubic-bezier(.16, 1, .3, 1), opacity .35s ease;
+      overflow: hidden;
     }
 
-    .portfolio-notes li::before {
-      content: '→ ';
-      color: rgba(255, 255, 255, .25)
+    .project-modal-backdrop.open .project-modal-panel {
+      transform: scale(1) translateY(0);
     }
 
-    /* ── Credentials ── */
+    .pm-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.5rem 1.75rem 1.25rem;
+      border-bottom: 1px solid rgba(255, 255, 255, .08);
+      background: rgba(255, 255, 255, .02);
+    }
+
+    .pm-header-left {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      flex-wrap: wrap;
+    }
+
+    .pm-category-pill {
+      font-size: .75rem;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      font-weight: 600;
+      padding: .35rem .85rem;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, .08);
+      border: 1px solid rgba(255, 255, 255, .15);
+      color: rgba(255, 255, 255, .9);
+    }
+
+    .pm-badge-status {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      font-size: .75rem;
+      color: rgba(255, 255, 255, .55);
+      font-weight: 500;
+    }
+
+    .pm-status-dot {
+      width: .5rem;
+      height: .5rem;
+      border-radius: 9999px;
+      background: #22c55e;
+      box-shadow: 0 0 8px rgba(34, 197, 94, .6);
+    }
+
+    .pm-close-btn {
+      width: 2.5rem;
+      height: 2.5rem;
+      display: grid;
+      place-items: center;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, .08);
+      color: rgba(255, 255, 255, .7);
+      border: 1px solid rgba(255, 255, 255, .12);
+      transition: all .25s ease;
+      cursor: pointer;
+    }
+
+    .pm-close-btn:hover {
+      background: #fff;
+      color: #0a0a0a;
+      transform: scale(1.06);
+    }
+
+    .pm-close-btn svg {
+      width: 1.1rem;
+      height: 1.1rem;
+    }
+
+    .pm-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1.75rem;
+      scroll-behavior: smooth;
+    }
+
+    .pm-body::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .pm-body::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .pm-body::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, .15);
+      border-radius: 9999px;
+    }
+
+    .pm-title {
+      font-size: 1.85rem;
+      font-weight: 600;
+      letter-spacing: -.02em;
+      line-height: 1.25;
+      color: #fff;
+    }
+
+    @media(min-width:640px) {
+      .pm-title {
+        font-size: 2.25rem;
+      }
+    }
+
+    .pm-subtitle {
+      font-size: .95rem;
+      color: rgba(255, 255, 255, .65);
+      margin-top: .4rem;
+      line-height: 1.45;
+    }
+
+    .pm-divider {
+      height: 1px;
+      background: linear-gradient(90deg, rgba(255, 255, 255, .18), rgba(255, 255, 255, .03));
+      margin: 1.5rem 0;
+    }
+
+    .pm-section {
+      margin-bottom: 1.5rem;
+    }
+
+    .pm-section:last-child {
+      margin-bottom: .5rem;
+    }
+
+    .pm-section-label {
+      font-size: .75rem;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: rgba(255, 255, 255, .45);
+      font-weight: 600;
+      margin-bottom: .6rem;
+    }
+
+    .pm-description {
+      font-size: .95rem;
+      line-height: 1.65;
+      color: rgba(255, 255, 255, .82);
+    }
+
+    .pm-notes {
+      display: flex;
+      flex-direction: column;
+      gap: .6rem;
+      font-size: .875rem;
+      line-height: 1.55;
+      color: rgba(255, 255, 255, .75);
+    }
+
+    .pm-notes li {
+      display: flex;
+      align-items: flex-start;
+      gap: .6rem;
+      padding: .6rem .85rem;
+      border-radius: .75rem;
+      background: rgba(255, 255, 255, .03);
+      border: 1px solid rgba(255, 255, 255, .06);
+    }
+
+    .pm-notes li::before {
+      content: '→';
+      color: #cf8047;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .pm-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+    }
+
+    .pm-tags .tag-chip {
+      padding: .4rem .9rem;
+      font-size: .82rem;
+      border: 1px solid rgba(255, 255, 255, .2);
+      background: rgba(255, 255, 255, .05);
+      color: #fff;
+      border-radius: 9999px;
+    }
+
+    .pm-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 1.75rem;
+      border-top: 1px solid rgba(255, 255, 255, .08);
+      background: rgba(255, 255, 255, .02);
+    }
+
+    .pm-footer-hint {
+      font-size: .75rem;
+      color: rgba(255, 255, 255, .4);
+    }
+
+    .pm-footer-close-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .5rem 1.25rem;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, .1);
+      border: 1px solid rgba(255, 255, 255, .2);
+      color: #fff;
+      font-size: .82rem;
+      font-weight: 500;
+      transition: all .25s ease;
+      cursor: pointer;
+    }
+
+    .pm-footer-close-btn:hover {
+      background: #fff;
+      color: #0a0a0a;
+      transform: scale(1.03);
+    }
+/* ── Credentials ── */
     .credentials {
       background: #fff
     }
@@ -3159,6 +3491,54 @@
     </div>
   </div>
 
+  <!-- Project Details Popup Modal -->
+  <div class="project-modal-backdrop" id="project-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="pm-title" aria-hidden="true">
+    <div class="project-modal-panel" id="project-modal-panel">
+      <!-- Modal Header -->
+      <div class="pm-header">
+        <div class="pm-header-left">
+          <span class="pm-category-pill" id="pm-category">Full-Stack · 2026</span>
+          <span class="pm-badge-status"><span class="pm-status-dot"></span>Production Ready</span>
+        </div>
+        <button class="pm-close-btn" id="pm-close-btn" aria-label="Close project modal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 6 6 18M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="pm-body">
+        <h2 class="pm-title" id="pm-title">Project Title</h2>
+        <div class="pm-subtitle" id="pm-subtitle">Subtitle / Overview</div>
+        <div class="pm-divider"></div>
+
+        <div class="pm-section">
+          <div class="pm-section-label">About the Project</div>
+          <p class="pm-description" id="pm-description"></p>
+        </div>
+
+        <div class="pm-section">
+          <div class="pm-section-label">Key Highlights & Architecture</div>
+          <ul class="pm-notes" id="pm-notes"></ul>
+        </div>
+
+        <div class="pm-section">
+          <div class="pm-section-label">Technologies & Tools Used</div>
+          <div class="pm-tags" id="pm-tags"></div>
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="pm-footer">
+        <span class="pm-footer-hint">Press Esc or click outside to dismiss</span>
+        <button class="pm-footer-close-btn" id="pm-footer-close-btn">
+          <span>Close Details</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
   <script type="importmap">
 { "imports": { "lenis": "https://unpkg.com/lenis@1.3.23/dist/lenis.mjs" } }
 </script>
@@ -3240,23 +3620,118 @@
       { name: 'Civic Issue Reporter System', sub: 'Smart City Tumakuru', cat: 'Full-Stack', year: '2026', desc: 'A digital platform that streamlines public civic-defect reporting, tracking and management for citizens and municipal authorities.', notes: ['Backend development, database schema design, interactive map & analytical chart integration.', 'Real-time complaint tracking, department-wise allocation, automated status notifications.', 'REST APIs for citizen & admin portals with secure auth and role-based access control.'], tags: ['Node.js', 'Express.js', 'MongoDB', 'EJS', 'Bootstrap', 'Chart.js', 'Leaflet.js'] },
       { name: 'Hostel Management Portal', sub: 'Full-stack campus operations suite', cat: 'Full-Stack', year: '2026', desc: 'A full-stack portal enabling room allocation, leave management, complaints, notices, penalties and fee tracking for an entire hostel.', notes: ['RESTful APIs with Express.js and Supabase for records, bookings and approvals.', 'Interactive dashboards with role-based access and real-time DB operations.', 'Responsive UI built to streamline day-to-day hostel operations.'], tags: ['Node.js', 'Express.js', 'Supabase', 'HTML/CSS', 'JavaScript'] },
       { name: 'Traffic Police Partner (TPP)', sub: 'Violation & fine management', cat: 'Django', year: '2026', desc: 'A digital platform to streamline traffic-violation reporting and fine management for traffic police personnel.', notes: ['Violation tracking system with structured database design for violation records.', 'Financial reporting dashboards for fines issued and collected.'], tags: ['Python', 'Django', 'MySQL', 'HTML/CSS', 'JavaScript'] },
-      { name: 'CyberShield', sub: 'Citizen Cybercrime & Threat Intelligence Portal', cat: 'Full-Stack', year: '2026', desc: 'A citizen-first cybercrime reporting and threat intelligence platform designed to report online fraud, track complaint lifecycles in real-time, and verify suspicious numbers, URLs, and emails.', notes: ['Multi-step incident filing workflow with automated tracking IDs and dynamic status progress pipelines.', 'Real-time scam scanner to verify suspicious phone numbers, phishing domains, and email addresses.', 'Role-based admin control center with complaint triage, categorization, and automated summons delivery.'], tags: ['React 19', 'TypeScript', 'Node.js', 'Express', 'Supabase', 'Tailwind CSS'] }
+      { name: 'CyberShield', sub: 'Citizen Cybercrime & Threat Intelligence Portal', cat: 'Full-Stack', year: '2026', desc: 'A citizen-first cybercrime reporting and threat intelligence platform designed to report online fraud, track complaint lifecycles in real-time, and verify suspicious numbers, URLs, and emails.', notes: ['Multi-step incident filing workflow with automated tracking IDs and dynamic status progress pipelines.', 'Real-time scam scanner to verify suspicious phone numbers, phishing domains, and email addresses.', 'Role-based admin control center with complaint triage, categorization, and automated summons delivery.'], tags: ['React 19', 'TypeScript', 'Node.js', 'Express', 'Supabase', 'Tailwind CSS'] },
     ];
     const portfolioGrid = document.getElementById('portfolio-grid');
+    const projectModalBackdrop = document.getElementById('project-modal-backdrop');
+    const pmCategory = document.getElementById('pm-category');
+    const pmTitle = document.getElementById('pm-title');
+    const pmSubtitle = document.getElementById('pm-subtitle');
+    const pmDescription = document.getElementById('pm-description');
+    const pmNotes = document.getElementById('pm-notes');
+    const pmTags = document.getElementById('pm-tags');
+    const pmCloseBtn = document.getElementById('pm-close-btn');
+    const pmFooterCloseBtn = document.getElementById('pm-footer-close-btn');
+
+    function openProjectModal(index) {
+      const item = projects[index];
+      if (!item) return;
+
+      if (pmCategory) pmCategory.textContent = `${item.cat} · ${item.year}`;
+      if (pmTitle) pmTitle.textContent = item.name;
+      if (pmSubtitle) pmSubtitle.textContent = item.sub;
+      if (pmDescription) pmDescription.textContent = item.desc;
+      if (pmNotes) {
+        pmNotes.innerHTML = item.notes.map(n => `<li><span>${n}</span></li>`).join('');
+      }
+      if (pmTags) {
+        pmTags.innerHTML = item.tags.map(t => `<span class="tag-chip">${t}</span>`).join('');
+      }
+
+      if (projectModalBackdrop) {
+        projectModalBackdrop.classList.add('open');
+        projectModalBackdrop.setAttribute('aria-hidden', 'false');
+      }
+      document.body.style.overflow = 'hidden';
+      if (typeof lenis !== 'undefined' && lenis && typeof lenis.stop === 'function') {
+        lenis.stop();
+      }
+    }
+
+    function closeProjectModal() {
+      if (!projectModalBackdrop) return;
+      projectModalBackdrop.classList.remove('open');
+      projectModalBackdrop.setAttribute('aria-hidden', 'true');
+      document.body.style.removeProperty('overflow');
+      if (typeof lenis !== 'undefined' && lenis && typeof lenis.start === 'function') {
+        lenis.start();
+      }
+    }
+
+    if (pmCloseBtn) pmCloseBtn.addEventListener('click', closeProjectModal);
+    if (pmFooterCloseBtn) pmFooterCloseBtn.addEventListener('click', closeProjectModal);
+    if (projectModalBackdrop) {
+      projectModalBackdrop.addEventListener('click', (e) => {
+        if (e.target === projectModalBackdrop) closeProjectModal();
+      });
+    }
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && projectModalBackdrop && projectModalBackdrop.classList.contains('open')) {
+        closeProjectModal();
+      }
+    });
+
     projects.forEach((item, i) => {
-      const li = document.createElement('li'); li.className = 'reveal'; li.style.transform = 'translateY(48px)';
-      li.innerHTML = `<article class="portfolio-card">
-    <div class="portfolio-meta"><span>${item.cat} — ${item.year}</span><span class="portfolio-arrow-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div>
-    <div class="portfolio-center"><svg viewBox="0 0 48 48" fill="currentColor"><path d="M24 2c2.2 13.8 7.9 19.6 22 22-14.1 2.4-19.8 8.2-22 22-2.2-13.8-7.9-19.6-22-22 14.1-2.4 19.8-8.2 22-22Z"/></svg></div>
-    <div class="portfolio-bottom">
-      <h3>${item.name}</h3>
-      <div class="sub">${item.sub}</div>
-      <p>${item.desc}</p>
-      <ul class="portfolio-notes">${item.notes.map(n => `<li>${n}</li>`).join('')}</ul>
-      <div class="portfolio-tags">${item.tags.map(t => `<span class="tag-chip">${t}</span>`).join('')}</div>
-    </div>
-  </article>`;
-      portfolioGrid.appendChild(li); observeReveal(li, { delay: i * 90 })
+      const li = document.createElement('li');
+      li.className = 'reveal';
+      li.style.transform = 'translateY(48px)';
+      li.style.height = '100%';
+
+      const previewTags = item.tags.slice(0, 4);
+      const remainingCount = item.tags.length - 4;
+
+      li.innerHTML = `<article class="portfolio-card" role="button" tabindex="0" aria-haspopup="dialog" data-project="${i}">
+        <div class="portfolio-meta">
+          <span class="portfolio-category-tag">${item.cat} · ${item.year}</span>
+          <span class="portfolio-arrow-badge" aria-label="Open project dossier">
+            <svg class="arrow-up-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M7 17 17 7M8 7h9v9" />
+            </svg>
+          </span>
+        </div>
+        <div class="portfolio-center">
+          <svg viewBox="0 0 48 48" fill="currentColor">
+            <path d="M24 2c2.2 13.8 7.9 19.6 22 22-14.1 2.4-19.8 8.2-22 22-2.2-13.8-7.9-19.6-22-22 14.1-2.4 19.8-8.2 22-22Z"/>
+          </svg>
+        </div>
+        <div class="portfolio-bottom">
+          <h3 class="portfolio-title">${item.name}</h3>
+          <div class="sub">${item.sub}</div>
+          <p class="portfolio-preview-desc">${item.desc}</p>
+          <div class="portfolio-tags">
+            ${previewTags.map(t => `<span class="tag-chip">${t}</span>`).join('')}
+            ${remainingCount > 0 ? `<span class="tag-chip tag-chip--more">+${remainingCount} more</span>` : ''}
+          </div>
+          <div class="portfolio-card-hint">
+            <span>View project dossier</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </div>
+        </div>
+      </article>`;
+
+      const card = li.querySelector('.portfolio-card');
+      card.addEventListener('click', () => openProjectModal(i));
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openProjectModal(i);
+        }
+      });
+
+      portfolioGrid.appendChild(li);
+      observeReveal(li, { delay: i * 90 });
     });
 
     // Education
